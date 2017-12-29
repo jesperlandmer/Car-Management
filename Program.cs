@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace Car_Management
+namespace CarManagement
 {
     class Program
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello World!");
+            view.View v = new view.View();
+
+            v.GetManufacturer();
         }
     }
 }

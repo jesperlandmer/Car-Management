@@ -1,7 +1,7 @@
 using System;
 using MySql.Data.MySqlClient;
 
-namespace Car_Management
+namespace CarManagement.model
 {
     public class DBConnection
     {
