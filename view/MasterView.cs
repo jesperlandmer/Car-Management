@@ -53,6 +53,7 @@ namespace CarManagement.view
             System.Console.WriteLine("3. Average Mileage Per Decade");
             System.Console.WriteLine("4. Average Mileage Per Manufacturer");
             System.Console.WriteLine("5. Average Mileage Per Production Year");
+            System.Console.WriteLine("6. Quit");
         }
         public StatsOption GetStatsOption()
         {

@@ -25,6 +25,7 @@ namespace CarManagement.controller
                     return true;
                 case view.MenuOption.Statistics:
                     return DoStatistics(m_reg, v_view);
+                    throw new Exception();
                 case view.MenuOption.Quit:
                 default:
                     return false;
@@ -62,19 +63,19 @@ namespace CarManagement.controller
             switch (v_view.GetStatsOption())
             {
                 case view.StatsOption.OldYoung:
-                    m_reg.AddCar(v_view.DoCar());
-                    return true;
+                    Console.WriteLine(m_reg.GetOldestAndYoungestOwners());
+                    return false;
                 case view.StatsOption.PopularBrand:
-                    m_reg.RemoveCar(v_view.DoRemoveCar());
+                    m_reg.GetMostPopularBrand();
                     return true;
                 case view.StatsOption.AvgDecade:
-                    m_reg.RemoveCar(v_view.DoRemoveCar());
+                    m_reg.GetMilesPerDecade();
                     return true;
                 case view.StatsOption.AvgBrand:
-                    m_reg.RemoveCar(v_view.DoRemoveCar());
+                    m_reg.GetMilesPerBrand();
                     return true;
                 case view.StatsOption.AvgMile:
-                    m_reg.RemoveCar(v_view.DoRemoveCar());
+                    m_reg.GetMilesPerYear();
                     return true;
                 case view.StatsOption.Quit:
                 default:

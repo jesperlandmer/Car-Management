@@ -53,9 +53,7 @@ namespace CarManagement.model
         public void RemoveCar(Car car)
         {
             List<string> commands = new List<string>();
-
             commands.Add("DELETE FROM Cars WHERE plate = '" + car.Plate + "';");
-
             ExecuteQueries(commands);
         }
 
@@ -71,6 +69,38 @@ namespace CarManagement.model
             }
 
             db.Close();
+        }
+        public string ReadDB(string query)
+        {
+            db.Open();
+
+            string str = "";
+            using (var cmd = new MySqlCommand(query, db.Connection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader != null)
+                    {
+                        while (reader.Read())
+                        {
+                            Console.Write(reader.GetString(0), "Table1.Column1");
+                        }
+
+                        if (reader.NextResult())
+                        {
+                            while (reader.Read())
+                            {
+                                Console.Write(reader.GetString(0), "Table2.Column2");
+                            }
+                        }
+                    }
+                } // reader closed and disposed up here
+
+            }
+
+            db.Close();
+
+            return str;
         }
     }
 }
