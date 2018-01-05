@@ -9,6 +9,15 @@ namespace CarManagement.view
         Statistics = 3,
         Quit = 4
     }
+    public enum StatsOption
+    {
+        OldYoung = 1,
+        PopularBrand = 2,
+        AvgDecade = 3,
+        AvgBrand = 4,
+        AvgMile = 5,
+        Quit = 6
+    }
     public class MasterView
     {
         private CarView v_car;
@@ -18,6 +27,7 @@ namespace CarManagement.view
         }
         public void DisplayMenu()
         {
+            Console.Clear();
             System.Console.WriteLine("\tCar Management Beta 1.0");
             System.Console.WriteLine("===========================================");
 
@@ -26,15 +36,43 @@ namespace CarManagement.view
             System.Console.WriteLine("3. Statistics");
             System.Console.WriteLine("4. Quit");
         }
+
+        public MenuOption GetMenuOption()
+        {
+            ConsoleKeyInfo keyinfo = Console.ReadKey(true);
+            return (MenuOption)Int32.Parse(keyinfo.KeyChar.ToString());
+        }
+        public void DisplayStatsMenu()
+        {
+            Console.Clear();
+            System.Console.WriteLine("\tCar Management Beta 1.0");
+            System.Console.WriteLine("===========================================");
+
+            System.Console.WriteLine("1. Oldest And Youngest Driver");
+            System.Console.WriteLine("2. Most Popular Manufacturer");
+            System.Console.WriteLine("3. Average Mileage Per Decade");
+            System.Console.WriteLine("4. Average Mileage Per Manufacturer");
+            System.Console.WriteLine("5. Average Mileage Per Production Year");
+        }
+        public StatsOption GetStatsOption()
+        {
+            ConsoleKeyInfo keyinfo = Console.ReadKey(true);
+            return (StatsOption)Int32.Parse(keyinfo.KeyChar.ToString());
+        }
+
         public model.Car DoCar()
         {
             return new model.Car(
-                v_car.GetLicencePlate(), 
+                v_car.GetLicencePlate(),
                 v_car.GetManufacturer(),
-                v_car.GetModel(), 
-                v_car.GetOwner(), 
-                v_car.GetMileage(), 
+                v_car.GetModel(),
+                v_car.GetOwner(),
+                v_car.GetMileage(),
                 v_car.GetYear());
+        }
+        public model.Car DoRemoveCar()
+        {
+            return new model.Car(v_car.GetLicencePlate());
         }
     }
 }

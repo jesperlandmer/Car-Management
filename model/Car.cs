@@ -11,6 +11,10 @@ namespace CarManagement.model
         public int Mileage { get; set; }
         public int Year { get; set; }
 
+        public Car(string plate)
+        {
+            Plate = plate;
+        }
         public Car(string plate, Manufacturer manufacturer, string model, Owner owner, int mileage, int year)
         {
             Plate = plate;

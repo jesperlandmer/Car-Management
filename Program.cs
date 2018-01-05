@@ -6,9 +6,11 @@ namespace CarManagement
     {
         static void Main(string[] args)
         {
-            view.View v = new view.View();
+            model.CarRegistry r = new model.CarRegistry();
+            view.MasterView v = new view.MasterView();
+            controller.Controller c = new controller.Controller();
 
-            v.GetManufacturer();
+            while(c.Run(r, v));
         }
     }
 }
