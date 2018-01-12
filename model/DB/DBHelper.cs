@@ -70,37 +70,27 @@ namespace CarManagement.model
 
             db.Close();
         }
-        public string ReadDB(string query)
+        public List<KeyValuePair<string, string>> ReadDB(string query, List<string> attr)
         {
             db.Open();
 
-            string str = "";
-            using (var cmd = new MySqlCommand(query, db.Connection))
+            List<KeyValuePair<string, string>> kvpList = new List<KeyValuePair<string, string>>();
+            var cmd = new MySqlCommand(query, db.Connection);
+
+            using (MySqlDataReader dr = cmd.ExecuteReader())
             {
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                while (dr.Read())
                 {
-                    if (reader != null)
+                    foreach (var a in attr)
                     {
-                        while (reader.Read())
-                        {
-                            Console.Write(reader.GetString(0), "Table1.Column1");
-                        }
-
-                        if (reader.NextResult())
-                        {
-                            while (reader.Read())
-                            {
-                                Console.Write(reader.GetString(0), "Table2.Column2");
-                            }
-                        }
+                        kvpList.Insert(0, new KeyValuePair<string, string>(a, dr[a].ToString()));
                     }
-                } // reader closed and disposed up here
-
+                }
             }
 
             db.Close();
 
-            return str;
+            return kvpList;
         }
     }
 }

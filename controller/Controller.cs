@@ -63,7 +63,7 @@ namespace CarManagement.controller
             switch (v_view.GetStatsOption())
             {
                 case view.StatsOption.OldYoung:
-                    Console.WriteLine(m_reg.GetOldestAndYoungestOwners());
+                    v_view.DisplayResult(m_reg.GetOldestAndYoungestOwners());
                     return false;
                 case view.StatsOption.PopularBrand:
                     m_reg.GetMostPopularBrand();

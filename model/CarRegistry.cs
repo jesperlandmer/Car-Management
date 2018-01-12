@@ -6,9 +6,11 @@ namespace CarManagement.model
     public class CarRegistry
     {
         private DBHelper m_db;
+        private List<string> attributes;
         public CarRegistry()
         {
             m_db = new DBHelper();
+            attributes = new List<string>();
         }
         public void LoadDatabase()
         {
@@ -23,11 +25,20 @@ namespace CarManagement.model
             m_db.RemoveCar(m_car);
         }
 
-        public string GetOldestAndYoungestOwners()
+        public List<KeyValuePair<string, string>> GetOldestAndYoungestOwners()
         {
-            string command = "SELECT * FROM Cars WHERE owner = " + 
-            "(SELECT ssn FROM Owners WHERE birth = (SELECT MIN(birth) FROM Owners));";
-            return m_db.ReadDB(command);
+            attributes.Add("name");
+            attributes.Add("birth");
+            attributes.Add("mileage");
+
+            string command = "SELECT Owners.name, Owners.birth, Cars.plate, Cars.mileage " +
+            "FROM Owners JOIN Cars ON Cars.owner = Owners.ssn WHERE Owners.birth = " +
+            "(SELECT MAX(birth) FROM Owners) " + 
+            "UNION SELECT Owners.name, Owners.birth, Cars.plate, Cars.mileage " + 
+            "FROM Owners JOIN Cars ON Cars.owner = Owners.ssn WHERE Owners.birth = " + 
+            "(SELECT MIN(birth) FROM Owners);";
+
+            return m_db.ReadDB(command, attributes);
         }
         public void GetMostPopularBrand()
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CarManagement.view
 {
@@ -54,6 +55,26 @@ namespace CarManagement.view
             System.Console.WriteLine("4. Average Mileage Per Manufacturer");
             System.Console.WriteLine("5. Average Mileage Per Production Year");
             System.Console.WriteLine("6. Quit");
+        }
+        public void DisplayResult(List<KeyValuePair<string, string>> kvpList)
+        {
+            int count = 0;
+            string str = "";
+            foreach (var kvp in kvpList)
+            {
+                if (count == 0)
+                {
+                    str = kvp.Key;
+                    count++;
+                }
+
+                if (kvp.Key == str)
+                {
+                    Console.WriteLine("----------------------------");
+                }
+
+                Console.WriteLine(string.Format("{0}: {1}", kvp.Key, kvp.Value));
+            }
         }
         public StatsOption GetStatsOption()
         {
