@@ -66,17 +66,17 @@ namespace CarManagement.controller
                     v_view.DisplayResult(m_reg.GetOldestAndYoungestOwners());
                     return false;
                 case view.StatsOption.PopularBrand:
-                    m_reg.GetMostPopularBrand();
-                    return true;
+                    v_view.DisplayResult(m_reg.GetMostPopularBrand());
+                    return false;
                 case view.StatsOption.AvgDecade:
-                    m_reg.GetMilesPerDecade();
-                    return true;
+                    v_view.DisplayResult(m_reg.GetMilesPerDecade());
+                    return false;
                 case view.StatsOption.AvgBrand:
-                    m_reg.GetMilesPerBrand();
-                    return true;
+                    v_view.DisplayResult(m_reg.GetMilesPerBrand());
+                    return false;
                 case view.StatsOption.AvgMile:
-                    m_reg.GetMilesPerYear();
-                    return true;
+                    v_view.DisplayResult(m_reg.GetMilesPerYear());
+                    return false;
                 case view.StatsOption.Quit:
                 default:
                     return false;
