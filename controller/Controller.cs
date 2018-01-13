@@ -13,17 +13,19 @@ namespace CarManagement.controller
         {
             m_reg.LoadDatabase();
             DoGenerateCars(m_reg);
-            v_view.DisplayMenu();
 
             switch (v_view.GetMenuOption())
             {
                 case view.MenuOption.AddCar:
+                    v_view.DisplayMenu();
                     m_reg.AddCar(v_view.DoCar());
                     return true;
                 case view.MenuOption.RemoveCar:
+                    v_view.DisplayMenu();
                     m_reg.RemoveCar(v_view.DoRemoveCar());
                     return true;
                 case view.MenuOption.Statistics:
+                    v_view.DisplayMenu();
                     return DoStatistics(m_reg, v_view);
                     throw new Exception();
                 case view.MenuOption.Quit:
@@ -63,20 +65,25 @@ namespace CarManagement.controller
             switch (v_view.GetStatsOption())
             {
                 case view.StatsOption.OldYoung:
+                    v_view.DisplayMenu();
                     v_view.DisplayResult(m_reg.GetOldestAndYoungestOwners());
-                    return false;
+                    return true;
                 case view.StatsOption.PopularBrand:
+                    v_view.DisplayMenu();
                     v_view.DisplayResult(m_reg.GetMostPopularBrand());
-                    return false;
+                    return true;
                 case view.StatsOption.AvgDecade:
+                    v_view.DisplayMenu();
                     v_view.DisplayResult(m_reg.GetMilesPerDecade());
-                    return false;
+                    return true;
                 case view.StatsOption.AvgBrand:
+                    v_view.DisplayMenu();
                     v_view.DisplayResult(m_reg.GetMilesPerBrand());
-                    return false;
+                    return true;
                 case view.StatsOption.AvgMile:
+                    v_view.DisplayMenu();
                     v_view.DisplayResult(m_reg.GetMilesPerYear());
-                    return false;
+                    return true;
                 case view.StatsOption.Quit:
                 default:
                     return false;

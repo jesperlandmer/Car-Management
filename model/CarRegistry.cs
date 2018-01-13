@@ -10,7 +10,6 @@ namespace CarManagement.model
         public CarRegistry()
         {
             m_db = new DBHelper();
-            attributes = new List<string>();
         }
         public void LoadDatabase()
         {
@@ -27,6 +26,7 @@ namespace CarManagement.model
 
         public List<KeyValuePair<string, string>> GetOldestAndYoungestOwners()
         {
+            attributes = new List<string>();
             attributes.Add("name");
             attributes.Add("birth");
             attributes.Add("mileage");
@@ -42,6 +42,7 @@ namespace CarManagement.model
         }
         public List<KeyValuePair<string, string>> GetMostPopularBrand()
         {
+            attributes = new List<string>();
             attributes.Add("manufacturer");
             attributes.Add("frequency");
 
@@ -52,6 +53,7 @@ namespace CarManagement.model
         }
         public List<KeyValuePair<string, string>> GetMilesPerDecade()
         {
+            attributes = new List<string>();
             attributes.Add("decade");
             attributes.Add("avg_mileage");
 
@@ -63,6 +65,7 @@ namespace CarManagement.model
         }
         public List<KeyValuePair<string, string>> GetMilesPerBrand()
         {
+            attributes = new List<string>();
             attributes.Add("manufacturer");
             attributes.Add("avg_mileage");
 
@@ -73,6 +76,7 @@ namespace CarManagement.model
         }
         public List<KeyValuePair<string, string>> GetMilesPerYear()
         {
+            attributes = new List<string>();
             attributes.Add("year");
             attributes.Add("avg_mileage");
 

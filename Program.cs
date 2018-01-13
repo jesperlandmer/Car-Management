@@ -10,6 +10,7 @@ namespace CarManagement
             view.MasterView v = new view.MasterView();
             controller.Controller c = new controller.Controller();
 
+            v.DisplayMenu();
             while(c.Run(r, v));
         }
     }
