@@ -10,21 +10,21 @@ namespace CarManagement.view
             System.Console.WriteLine("Enter Licence Plate (AAA000):");
             return Console.ReadLine();
         }
-        public model.Manufacturer GetManufacturer()
+        public model.Model GetModel()
         {
             System.Console.WriteLine("Enter Manufacturer:");
             int counter = 1;
 
-            foreach (model.Brand b in Enum.GetValues(typeof(model.Brand)))
+            foreach (model.Manufacturer b in Enum.GetValues(typeof(model.Manufacturer)))
             {
                 System.Console.WriteLine(counter + ". " + b.ToString());
                 counter++;
             }
 
             ConsoleKeyInfo keyinfo = Console.ReadKey(true);
-            return new model.Manufacturer((model.Brand)Convert.ToInt32(keyinfo.KeyChar.ToString()));
+            return new model.Model(GetModelName(), (model.Manufacturer)Convert.ToInt32(keyinfo.KeyChar.ToString()));
         }
-        public string GetModel()
+        public string GetModelName()
         {
             System.Console.WriteLine("Enter Model:");
             return Console.ReadLine();

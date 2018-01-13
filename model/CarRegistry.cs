@@ -46,8 +46,9 @@ namespace CarManagement.model
             attributes.Add("manufacturer");
             attributes.Add("frequency");
 
-            string command = "SELECT manufacturer, COUNT(manufacturer) AS frequency " +
-            "FROM Cars GROUP BY manufacturer ORDER BY COUNT(manufacturer) DESC LIMIT 1;";
+            string command = "SELECT manufacturer, COUNT(manufacturer) " +
+            "AS frequency FROM Cars c INNER JOIN Models m ON c.model = m.model " +
+            "GROUP BY manufacturer ORDER BY COUNT(manufacturer) DESC LIMIT 1;";
 
             return m_db.ReadDB(command, attributes);
         }
@@ -59,7 +60,7 @@ namespace CarManagement.model
 
             string command = "SELECT FLOOR(YEAR(o.birth) / 10 ) * 10 AS decade, " +
             "(SUM(mileage) / COUNT(ssn)) AS avg_mileage FROM Owners o INNER JOIN Cars c " +
-            "ON o.ssn = c.owner GROUP BY decade ORDER BY avg_mileage DESC;";
+            "ON o.ssn = c.owner GROUP BY decade ORDER BY decade DESC;";
 
             return m_db.ReadDB(command, attributes);
         }
@@ -70,7 +71,8 @@ namespace CarManagement.model
             attributes.Add("avg_mileage");
 
             string command = "SELECT manufacturer, avg(mileage) AS avg_mileage " +
-            "FROM Cars GROUP BY manufacturer ORDER BY avg_mileage DESC;";
+            "FROM Cars c INNER JOIN Models m ON c.model = m.model GROUP BY manufacturer " +
+            "ORDER BY avg_mileage DESC;";
 
             return m_db.ReadDB(command, attributes);
         }

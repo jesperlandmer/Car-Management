@@ -86,7 +86,6 @@ namespace CarManagement.view
         {
             return new model.Car(
                 v_car.GetLicencePlate(),
-                v_car.GetManufacturer(),
                 v_car.GetModel(),
                 v_car.GetOwner(),
                 v_car.GetMileage(),

@@ -36,14 +36,13 @@ namespace CarManagement.controller
 
         private void DoGenerateCars(model.CarRegistry m_reg)
         {
-            string json = File.ReadAllText("randomCars.json");
+            string json = File.ReadAllText(System.AppDomain.CurrentDomain.BaseDirectory + "/randomCars.json");
             var ja = JArray.Parse(json);
 
             List<model.Car> Cars = ja.Select(p => new model.Car
             (
                 (string)p["plate"],
-                new model.Manufacturer(ParseEnum<model.Brand>((string)p["manufacturer"])),
-                (string)p["model"],
+                new model.Model((string)p["model"], ParseEnum<model.Manufacturer>((string)p["manufacturer"])),
                 new model.Owner((string)p["ssn"], (string)p["name"]),
                 (int)p["mileage"],
                 (int)p["year"]
