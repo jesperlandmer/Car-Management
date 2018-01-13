@@ -13,7 +13,6 @@ project.lock.json
 *.user
 *.userosscache
 *.sln.docstates
-*.csproj
 
 # Build results
 [Dd]ebug/
